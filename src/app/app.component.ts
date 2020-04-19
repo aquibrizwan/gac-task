@@ -3,7 +3,13 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { API } from './API.service';
-import { AngularFireDatabase } from '@angular/fire/database'
+import { AngularFireDatabase } from '@angular/fire/database';
+// import * as _ from 'lodash';
+// import * as cloneDeep from 'lodash/cloneDeep';
+// import * as cloneDeep from 'lodash/cloneDeep';
+import {cloneDeep} from 'lodash';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,6 +31,7 @@ export class AppComponent {
   tableData;
   changedValues;
   dataretrive;
+  _ValuesArrayChanges;
   title = 'timesheet-task';
   taskName;
   testData = "hello";
@@ -37,6 +44,7 @@ export class AppComponent {
   }
 
   ngOnInit() {
+  
     this.fetchdata();
   }
 
@@ -72,11 +80,7 @@ export class AppComponent {
   filter() {
     this.filteredArray = this.apiResponse[0].arrayOfOrg.filter(ele => ele.name == this.selectedValue);
     if (this.filteredArray && this.filteredArray.length) {
-      this.tableData = this.filteredArray[0].dataSource;
-      // for(let i=0; i<=this.tableData.length; i++){
-      //   this.changedValues[i]
-      // }
-      // this.changedValues = this.tableData.slice(0)
+      this.tableData = this.filteredArray[0].dataSource; 
       console.log(this.tableData,'table')
       
       var add = this.tableData.map(ele => ele.Sunday)
@@ -134,7 +138,7 @@ export class AppComponent {
       this.tableData.push(this.binddata)
       console.log(this.tableData,'table datadatyfu')
       }
-
+      this._ValuesArrayChanges= cloneDeep(this.tableData );
       console.log(this.changedValues, 'this.changedValues this.changedValues this.changedValues')
       if (this.filteredArray[0].dataSource.map(ele => ele.TaskName)) {
         this.inputTextType = 'text'
@@ -144,12 +148,13 @@ export class AppComponent {
       }
     }
   }
-  sumOperation(){
-    //  this.fetchdata()
-    console.log('hi hiihi')
-  }
+
   initialData() {
-    console.log(this.selectedValue, ' this.changedValues  this.changedValues')
+    // console.log(this.selectedValue, ' this.changedValues  this.changedValues')
+    // this.ngOnInit()
+    // this.filter()
+    this.tableData = this._ValuesArrayChanges;
+    console.log(this._ValuesArrayChanges,'chunk'); // returns true 
   }
 
   backToList() {
@@ -211,25 +216,4 @@ export class AppComponent {
     }
   }
 
-  cellValueChange(ele, col) {
-    console.log(this.dataretrive[0], 'sdfsdfesd')
-    console.log(ele, col, "ele")
-    // console.log(element[col],"cellValue cellValue cellValue")
-
-  }
-
-  getTotal (col) {
-    console.log('data source --------------------- ', col, this.tableData)
-  }
-
-  // totalAvg() {
-  //   console.log(this.selectedValue)
-  //   const filteredAaa = this.apiResponse.arrayOfOrg.filter(ele => ele.name == this.selectedValue + '')
-  //   if (filteredAaa.length && filteredAaa[0].dataSource)
-  //     this.filteredSum = filteredAaa[0].dataSource.map(ele => ele.Sunday).reduce(function (a, b) {
-  //       return +a + +b;
-  //     }, 0);;
-
-  //   console.log(this.filteredSum)
-  // }
 }
