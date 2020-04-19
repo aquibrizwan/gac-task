@@ -145,7 +145,8 @@ export class AppComponent {
     }
   }
   sumOperation(){
-     this.fetchdata()
+    //  this.fetchdata()
+    console.log('hi hiihi')
   }
   initialData() {
     console.log(this.selectedValue, ' this.changedValues  this.changedValues')
