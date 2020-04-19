@@ -10,6 +10,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 import { API } from "./API.service";
+import { AngularFireModule } from "@angular/fire"
+import { AngularFireDatabaseModule } from "@angular/fire/database"
+import { environment } from "../environments/environment"
+import { from } from 'rxjs';
 // import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { API } from "./API.service";
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [API],
   bootstrap: [AppComponent]
