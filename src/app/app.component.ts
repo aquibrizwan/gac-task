@@ -158,9 +158,8 @@ export class AppComponent {
   }
 
   backToList() {
-    console.log(this._ValuesArrayChanges,'chunk'); // returns true 
     this.db.list('data').remove()
-    this.tableData.pop()
+    // this.tableData.pop()
     console.log(this.apiResponse[0], 'sdfsdfesd')
     this.apiResponse[0].arrayOfOrg.filter(ele => {
       if (ele.name == this.selectedValue + "") {
@@ -204,6 +203,8 @@ export class AppComponent {
     //  ]}
     var data = {};
     data = this.apiResponse[0]
+    this.tableData.pop()
+    
     console.log(this.apiResponse[0],'this.apiResponse[0] this.apiResponse[0]')
     this.db.list('data').push(data)
     alert('your data saved successfully')
