@@ -150,11 +150,9 @@ export class AppComponent {
   }
 
   initialData() {
-    // console.log(this.selectedValue, ' this.changedValues  this.changedValues')
-    // this.ngOnInit()
-    // this.filter()
+  
     this.tableData = this._ValuesArrayChanges;
-    console.log(this._ValuesArrayChanges,'chunk'); // returns true 
+  
   }
 
   backToList() {
@@ -217,3 +215,4 @@ export class AppComponent {
   }
 
 }
+

@@ -115,7 +115,10 @@
       <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
   </div>
-  <div class="btm-btns">
+  <div *ngIf="!tableData" class="bold">
+    Select employee in above dropdown to see the timesheet Table 
+  </div>
+  <div *ngIf="tableData" class="btm-btns">
     <button  type="button" (click)="initialData()">Back to list</button>
     <button  type="button"(click)="backToList()">Save</button>
   </div>
