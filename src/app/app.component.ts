@@ -150,12 +150,15 @@ export class AppComponent {
   }
 
   initialData() {
-  
-    this.tableData = this._ValuesArrayChanges;
-  
+    // console.log(this._ValuesArrayChanges,'chunk')
+    // console.log(this.tableData,'chunk')
+    this.tableData = cloneDeep(this._ValuesArrayChanges)
+
+    // console.log(this._ValuesArrayChanges,'chunk'); // returns true 
   }
 
   backToList() {
+    console.log(this._ValuesArrayChanges,'chunk'); // returns true 
     this.db.list('data').remove()
     this.tableData.pop()
     console.log(this.apiResponse[0], 'sdfsdfesd')
