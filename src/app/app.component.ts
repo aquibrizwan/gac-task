@@ -206,6 +206,7 @@ export class AppComponent {
     data = this.apiResponse[0]
     console.log(this.apiResponse[0],'this.apiResponse[0] this.apiResponse[0]')
     this.db.list('data').push(data)
+    alert('your data saved successfully')
   }
 
   clickGoesHere() {
